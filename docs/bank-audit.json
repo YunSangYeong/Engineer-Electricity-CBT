@@ -1,34 +1,41 @@
 {
-  "scope": "AI internal review and automated checks; not official or external expert verification",
+  "scope": "AI internal template/text review and separate automated numeric checks; not official or external expert verification",
   "reviewDate": "2026-10-21",
   "target": 1000,
-  "registered": 200,
-  "reviewedInternal": 200,
+  "registered": 1000,
+  "reviewedInternal": 1000,
   "pending": 0,
-  "shortfall": 800,
+  "shortfall": 0,
+  "duplicateIds": 0,
+  "duplicateNormalizedQuestionsAndChoices": 0,
   "typeCounts": {
     "past": 0,
     "reconstructed": 0,
-    "original": 200
+    "original": 1000
   },
   "subjectCounts": {
-    "전기설비기술기준": 40,
-    "회로이론 및 제어공학": 40,
-    "전기자기학": 40,
-    "전력공학": 40,
-    "전기기기": 40
+    "전기설비기술기준": 200,
+    "회로이론 및 제어공학": 200,
+    "전력공학": 200,
+    "전기자기학": 200,
+    "전기기기": 200
   },
-  "calculationCount": 160,
-  "numericFamilyCount": 16,
+  "calculationCount": 960,
+  "numericFamilyCount": 96,
   "conditionsPerFamily": 10,
-  "additionalNumericVariants": 144,
+  "additionalNumericVariants": 864,
   "conceptualCount": 40,
+  "baselineCommit": "1eade5a03b8f1d0186d4df4dd98364ca9ec64323",
+  "retainedBaselineCount": 200,
+  "newCount": 800,
+  "baselinePreservationCheck": "tests/bank.test.ts using tests/fixtures/baseline-200.json",
   "externalExpertReviewed": 0,
   "officialSyllabusCompared": false,
   "deterministicRegeneration": true,
   "sha256": {
-    "src/data/questions-main.json": "9a97b46c8b9852a2dcf88fe7d1121b63e04f511593cf8f35a1272185ce5749d0",
+    "src/data/questions-main.json": "893baff6f570bf62794ae53c95459d568fe196093a0b965be4686dd91bd7a8de",
     "public/templates/questions.json": "132558506eed58a8b3c25d6cabaf5a27ba2750249a8f83366f4e87873984ddbd",
     "public/templates/questions.csv": "72857e8e5f9aaece8c6f5e84368244e9fa6b07ce4a1f2b55c9323f6fdd6acfcc"
-  }
+  },
+  "numericVerification": "npm test; tests/bank.test.ts and tests/expanded-equations.ts"
 }

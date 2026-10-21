@@ -32,7 +32,7 @@ test("학습 기준 선택 없음·반응형·자격증 기록 복원", async ({
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
-  await expect(page.locator(".bank-summary")).toContainText(/등록\s*200문항/);
+  await expect(page.locator(".bank-summary")).toContainText(/등록\s*1000문항/);
   await expect(page.getByLabel("학습 기준")).toHaveCount(0);
   await expect(page.locator("main")).not.toContainText("학습 기준");
   await expect(page.locator("main")).not.toContainText("2027–2029");
@@ -196,7 +196,8 @@ test("JSON 등록·중복 제거·검수 대기·사용자 검수·CSV 등록·�
   await expectNoDefaultVersionYears(page);
   await expect(page.locator(".bank-filter")).toContainText("기본 문제은행");
   await expect(page.locator(".bank-row")).toHaveCount(20);
-  await expect(page.locator(".pagination")).toContainText("1 / 10");
+  await expect(page.locator(".notice")).toContainText("내부 검수 목표 1000문항을 충족했습니다.");
+  await expect(page.locator(".pagination")).toContainText("1 / 50");
   await page.getByLabel("문항 검색", { exact: true }).fill("EE-line-loss-01");
   await expect(page.locator(".bank-row")).toHaveCount(1);
   await page.locator(".bank-row summary").click();
@@ -204,6 +205,11 @@ test("JSON 등록·중복 제거·검수 대기·사용자 검수·CSV 등록·�
   await expect(page.locator(".bank-row .explanation")).toContainText(
     "내부 검토",
   );
+  await page.getByLabel("문항 검색", { exact: true }).fill("EE-pv-cold-open-circuit-01");
+  await expect(page.locator(".bank-row")).toHaveCount(1);
+  await page.locator(".bank-row summary").click();
+  await expect(page.locator(".bank-row .explanation")).toContainText("88.4 V");
+  await expect(page.locator(".bank-row .explanation")).toContainText("자체 제작");
   await page.getByLabel("문항 검색", { exact: true }).fill("");
   const custom = {
     ...bank[0],

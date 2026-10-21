@@ -34,12 +34,13 @@ describe("모의시험 및 절대 시간", () => {
     expect(exam.deadline).toBe(9001000);
     expect(exam.questions.some((q) => q.id === "pending")).toBe(false);
   });
-  it("유형이 부족한 과목은 가능한 모든 family를 먼저 포함한 후 고유 ID로 보충한다", () => {
+  it("모든 과목에서 한 시험의 계산 family를 중복 출제하지 않는다", () => {
     for (let round = 0; round < 10; round++) {
       const exam = createExam(bank, "main");
-      for (const subject of SUBJECTS.slice(0, 4)) {
+      for (const subject of SUBJECTS) {
         const selected = exam.questions.filter(q => q.subject === subject);
-        expect(new Set(selected.map(q => q.family)).size).toBe(4);
+        const families=selected.flatMap(q=>q.family?[q.family]:[]);
+        expect(new Set(families).size).toBe(families.length);
       }
     }
   });
@@ -105,12 +106,12 @@ describe("랜덤 학습", () => {
   it("한 과목의 모든 문항을 순회하기 전에는 중복이 없다", () => {
     let p = startPractice(bank, "main", "전기자기학");
     const ids = new Set<string>();
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 200; i++) {
       expect(ids.has(p.currentId)).toBe(false);
       ids.add(p.currentId);
       p = nextPractice(p, bank);
     }
-    expect(ids.size).toBe(40);
+    expect(ids.size).toBe(200);
     expect(p.subject).toBe("전기자기학");
   });
   it("즉시 채점·연속 정답·통계를 저장하며 중복 채점을 방지한다", () => {

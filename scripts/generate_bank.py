@@ -23,6 +23,7 @@ def add(subject, family, index, topic, text, result, unit, explanation, values):
              explanation=explanation + f' 따라서 답은 {rounded:g} {unit}이다. 보기의 값은 같은 단위이며 반올림 후 하나만 일치한다.',
              family=family, calculation={'kind': family, 'values': values, 'result': rounded, 'unit': unit, 'precision': 2})
     questions.append(q)
+    return q
 
 def common(subject, identifier, topic):
     return dict(id=identifier, subject=subject, topic=topic, difficulty='중', year=None, session=None,
@@ -167,8 +168,11 @@ for i, (topic, text, correct, wrong, explanation) in enumerate(concepts):
     q.update(question=text, choices=opts, answer=opts.index(correct)+1, explanation=explanation,
              reviewNote='AI 일반 전기설비 원리로 자체 작성. 단일 정답성·오답 보기·해설 문장 내부 검토. KEC 조항·법정 수치·최신 적용판과 외부 전문가 검수는 미대조. 법규 학습을 대체하지 않음. URL은 작성 기록.')
     questions.append(q)
+from expanded_bank import extend_bank
+extend_bank(add, SUBJECTS)
+
 questions.sort(key=lambda q: q['id'])
-assert len(questions) == 200
+assert len(questions) == 1000
 (ROOT / 'src/data/questions-main.json').write_text(json.dumps(questions, ensure_ascii=False, indent=2) + '\n')
 example = dict(questions[0], id='IMPORT-EE-001', verificationStatus='pending', question='[사용자가 새로 작성할 문항] ' + questions[0]['question'], reviewNote='양식 예제. 실제 출처·권한·정답 근거를 확인한 후 로컬 승인하세요.')
 example.pop('calculation', None)

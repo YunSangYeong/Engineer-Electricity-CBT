@@ -1720,6 +1720,7 @@ function BankManager({
 }) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("전체");
+  const shortfall = Math.max(0, PROFILE.targetReviewedCount - BASE_BANK.filter(q => q.verificationStatus === "reviewed").length);
   const [page, setPage] = useState(1);
   const [error, setError] = useState("");
   const [confirmed, setConfirmed] = useState(false);
@@ -1780,11 +1781,14 @@ function BankManager({
         <ShieldCheck size={19} />
         <div>
           <strong>
-            기본 문항은 {BASE_BANK.length}개 모두 자체 제작입니다. 목표 {PROFILE.targetReviewedCount}개까지 {Math.max(0, PROFILE.targetReviewedCount - BASE_BANK.filter(q => q.verificationStatus === "reviewed").length)}개 부족합니다.
+            기본 문항은 {BASE_BANK.length}개 모두 자체 제작입니다.{" "}
+            {shortfall === 0
+              ? `내부 검수 목표 ${PROFILE.targetReviewedCount}문항을 충족했습니다.`
+              : `목표 ${PROFILE.targetReviewedCount}개까지 ${shortfall}개 부족합니다.`}
           </strong>
           <br />
           원문 기출 0 · 복원문제 0. 공식 자료 접근 제한으로 기출 원문 및
-          출제기준 대조는 완료하지 못했습니다. 시험 규칙도 공식 원문 미대조입니다. 현재 1,000문항 목표 미달이며 기본 문항은 내부 검토 및 계산
+          출제기준 대조는 완료하지 못했습니다. 시험 규칙도 공식 원문 미대조입니다. 기본 문항은 내부 검토 및 계산
           검증을 거쳤으며 외부 전문가 검수는 받지 않았습니다.
         </div>
       </div>

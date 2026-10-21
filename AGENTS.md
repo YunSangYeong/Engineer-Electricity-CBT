@@ -18,9 +18,9 @@
 
 - 대상은 전기기사이며 설정은 `src/qualification.json`, 기본 문항은 `src/data/questions-main.json`이다.
 - 공식 원문 접근이 차단된 상태다. `docs/qualification-verification.md`를 확인하고 공식 대조 완료로 표시하지 않는다.
-- 현재 기본 문항은 자체 제작 내부 검수 200개(과목별 40), 목표 1,000개에 800개 부족하다. 수량을 과장하지 않는다.
-- 계산형 16개 family × 10조건 = 160개와 개념형 40개를 구분한다. `scripts/generate_bank.py`는 결정적 생성기이고 외부 근거가 아니다.
+- 현재 기본 문항은 자체 제작 내부 검수 1,000개(과목별 200), 목표 대비 부족은 0개다. 기존 200개를 보존한다. 수량을 과장하지 않는다.
+- 계산형 96개 family × 10조건 = 960개와 개념형 40개를 구분한다. `scripts/generate_bank.py`와 `scripts/expanded_bank.py`는 결정적 생성기/원고이고 외부 근거가 아니다. `scripts/audit_bank.py`로 수량·중복·재생성 해시를 검사한다.
 - 단위 검사 `npm test`, 타입·프로덕션 빌드 `npm run build`, PC/모바일 브라우저 검사 `npm run test:e2e`를 사용한다.
 - 기존 체크아웃에서 작업한다. 사용자가 요청하지 않은 worktree를 만들지 않는다.
 - `.github/workflows/ci.yml`은 검증 전용이다. `pages.yml`은 main에서 사용자가 직접 수동 실행할 때만 배포한다. 에이전트는 실행하지 않는다.
-- GitHub API에서 기존 Pages 상태를 읽을 수 없었으므로 새 작업 브랜치를 사용했다. main으로 병합하기 전 사용자에게 Pages Source가 GitHub Actions인지 확인하도록 안내한다.
+- GitHub API에서 기존 Pages 상태를 읽을 수 없었으므로 이번 1,000문항 보완은 새 브랜치 `feat/question-bank-1000-20261021`를 사용한다. main으로 병합하기 전 사용자에게 Pages Source가 GitHub Actions인지 확인하도록 안내한다.
