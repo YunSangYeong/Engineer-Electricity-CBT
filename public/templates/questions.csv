@@ -1,0 +1,2 @@
+id,subject,topic,difficulty,year,session,type,sourceUrl,verificationStatus,reviewNote,version,rights,question,answer,explanation,choice1,choice2,choice3,choice4
+IMPORT-EE-001,전기설비기술기준,감전 보호,중,,,original,https://github.com/YunSangYeong/Engineer-Electricity-CBT/blob/feat/engineer-cbt-20261021/docs/question-review.md,pending,양식 예제. 실제 출처·권한·정답 근거를 확인한 후 로컬 승인하세요.,main,프로젝트 자체 제작 · CC BY 4.0,[사용자가 새로 작성할 문항] 기본 절연의 주된 목적은?,1,기본 절연은 정상 상태의 기본 보호 수단이다. 절연 고장 시의 보호까지 자동으로 보장하지 않으므로 고장 보호와 구별한다.,정상 운전 상태에서 충전부에 직접 접촉하지 않도록 한다,고장전류를 항상 0으로 만든다,모든 과부하를 검출한다,모든 낙뢰를 제거한다

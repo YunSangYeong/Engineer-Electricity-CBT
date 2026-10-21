@@ -1,0 +1,32 @@
+{
+  "name": "전기기사",
+  "slug": "engineer-electricity-cbt",
+  "storageNamespace": "engineer-electricity-cbt:v1",
+  "bankId": "main",
+  "questionCount": 100,
+  "durationMinutes": 150,
+  "questionsPerSubject": 20,
+  "choiceCount": 4,
+  "passScore": 60,
+  "subjectCutoff": 40,
+  "subjects": [
+    "전기자기학",
+    "전력공학",
+    "전기기기",
+    "회로이론 및 제어공학",
+    "전기설비기술기준"
+  ],
+  "rulesVerificationStatus": "pending-official-access",
+  "officialSources": [
+    {
+      "url": "https://www.q-net.or.kr/crf005.do?id=crf00503&jmCd=1150",
+      "status": "CONNECT 403; content not read"
+    },
+    {
+      "url": "https://www.law.go.kr/법령/국가기술자격법시행규칙",
+      "status": "CONNECT 403; content not read"
+    }
+  ],
+  "rulesNote": "일반적으로 알려진 필기 규칙을 학습용 설정으로 적용. 공식 원문 미대조. 최신 출제기준·KEC 적용판·실기 범위는 검증되지 않음.",
+  "targetReviewedCount": 1000
+}
